@@ -1,2 +1,2 @@
 # anipet
-The best online store for pet stuff
+The best online store for pet food
