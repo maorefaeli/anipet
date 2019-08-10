@@ -1,34 +1,44 @@
 ﻿@model anipet.Models.FoodSource
-
+@{
+    anipet.Models.User currentUser = (anipet.Models.User)Session["User"];
+}
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="box">
+    <hr>
+    <h2 class="intro-text text-center">
+        <strong>Food Source</strong>
+        <small>details</small>
+    </h2>
+    <hr>
+    <div class="food-sources-details">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-<div>
-    <h4>FoodSource</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.SourcePricePerKilo)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SourcePricePerKilo)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SourcePricePerKilo)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.SourcePricePerKilo)
-        </dd>
-
-    </dl>
+        </dl>
+    </div>
+    <p style="margin-left: 900px;">
+        @if (currentUser != null && currentUser.IsAdmin)
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+            <text>|</text>
+        }
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

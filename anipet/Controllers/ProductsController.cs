@@ -45,7 +45,7 @@ namespace anipet.Controllers
         }
 
         // GET: Products/Search
-        public ActionResult Search(string name = null, string material = null, string city = null, int price = 0)
+        public ActionResult Search(string name = null, string foodSource = null, string city = null, int price = 0)
         {
             var currentUser = (User)HttpContext.Session["user"];
             ViewBag.FavoriteProduct = currentUser.FavoriteProduct;
@@ -69,9 +69,9 @@ namespace anipet.Controllers
                 returnDataQurey = returnDataQurey.Where(r => r.Stores.Any(i => i.City == city));
             }
 
-            if (!string.IsNullOrEmpty(material))
+            if (!string.IsNullOrEmpty(foodSource))
             {
-                returnDataQurey = returnDataQurey.Where(r => r.FoodSource.Name == material);
+                returnDataQurey = returnDataQurey.Where(r => r.FoodSource.Name == foodSource);
             }
 
             if (price > 0)
@@ -209,7 +209,7 @@ namespace anipet.Controllers
             }
 
             // So the validation wont fail as it was null before we set it.
-            ModelState.Remove("Fabric.Material");
+            ModelState.Remove("Product.FoodSource");
 
             if (!ModelState.IsValid)
             {

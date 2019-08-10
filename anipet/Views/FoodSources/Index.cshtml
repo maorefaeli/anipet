@@ -1,39 +1,96 @@
 ﻿@model IEnumerable<anipet.Models.FoodSource>
+@{
+    anipet.Models.User currentUser = (anipet.Models.User)Session["User"];
+}
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<link href="https://fonts.googleapis.com/css?family=Assistant" rel="stylesheet">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SourcePricePerKilo)
-        </th>
-        <th></th>
-    </tr>
+<div class="box" style="flex-direction: column">
+    <hr>
+    <div class="row">
+        <h class="intro-text text-center col-md-2 col-md-offset-5">
+            <strong>Food Sources</strong>
+            <h>List</h>
+        </h>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SourcePricePerKilo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+        @if (currentUser != null && currentUser.IsAdmin)
+        {
+            <aside class="text-right col-md-2 col-md-offset-2">
+                <i class="fa fa-diamond"></i>
+                @Html.ActionLink("Create New", "Create")
+            </aside>
+        }
+    </div>
+    <hr>
 
-</table>
+    <aside class="text-center">Enter search parameters and click the Search button below</aside>
+    <hr />
+
+    <div class="container">
+        @using (Html.BeginForm("Search", "FoodSources", FormMethod.Get))
+        {
+            <form class="form-inline">
+                <div class="form-group col-md-2 col-md-offset-2">
+                    <div>
+                        <input class="form-control" type="text" name="foodSource" placeholder="Food Source" />
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <div>
+                        <input class="form-control" type="number" name="price" min="0" placeholder="price" />
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <button type="submit" class="btn btn-info">
+                        <span class="glyphicon glyphicon-search">
+                            Search
+                        </span>
+                    </button>
+                </div>
+            </form>
+        }
+    </div>
+
+    <table class="table" style="margin-left: 18%; width: 75%;">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SourcePricePerKilo)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SourcePricePerKilo)
+                </td>
+                <td>
+                    @if (currentUser != null && currentUser.IsAdmin)
+                    {
+                        <a href="/FoodSources/Edit/@Html.DisplayFor(modelItem => item.Id)"><i class="fa fa-pencil"></i></a> <text>|</text>
+                    }
+
+                    <a href="/FoodSources/Details/@Html.DisplayFor(modelItem => item.Id)"><i class="fa fa-info-circle"></i></a>
+
+                    @if (currentUser != null && currentUser.IsAdmin)
+                    {
+                        <text>|</text>
+                        <a href="/FoodSources/Delete/@Html.DisplayFor(modelItem => item.Id)"><i class="fa fa-remove"></i></a>
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

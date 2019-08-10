@@ -13,7 +13,7 @@
         <small>details</small>
     </h2>
     <hr>
-    <div class="fabric-details">
+    <div class="product-details">
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.Name)
@@ -51,7 +51,7 @@
                 @Html.DisplayNameFor(model => model.Stores)
             </dt>
             <dd>
-                @if (ViewBag.FabricStoreList != null && ViewBag.FabricStoreList.Count > 0)
+                @if (ViewBag.ProductStoreList != null && ViewBag.ProductStoreList.Count > 0)
                 {
                     <ul style="padding: 0; list-style-type: none;">
                         @{

@@ -34,7 +34,7 @@ namespace anipet.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Error", new { message = "Missing Permissions" });
+                return RedirectToAction("Index", "Error", new { message = "Missing permissions" });
             }
         }
 
@@ -53,7 +53,7 @@ namespace anipet.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Error", new { message = "Missing Permissions" });
+                    return RedirectToAction("Index", "Error", new { message = "Missing permissions" });
                 }
             }
             return RedirectToAction("Index", "Error");

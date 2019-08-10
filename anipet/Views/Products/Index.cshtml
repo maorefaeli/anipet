@@ -6,7 +6,7 @@
 @{
     ViewBag.Title = "Index";
 }
-<div class="box fabric-edit">
+<div class="box product-edit">
     <hr />
     <div class="row">
         <h class="intro-text text-center col-md-2 col-md-offset-5">
@@ -32,12 +32,12 @@
             <form class="form-inline">
                 <div class="form-group col-md-2 col-md-offset-1">
                     <div>
-                        <input class="form-control" type="text" name="name" placeholder="Fabric name" />
+                        <input class="form-control" type="text" name="name" placeholder="Product name" />
                     </div>
                 </div>
                 <div class="form-group col-md-2">
                     <div>
-                        <select class="form-control" name="material">
+                        <select class="form-control" name="foodSource">
                             <option id="grayOption" value="" selected>Select Food Source</option>
                             @foreach (var name in ViewBag.FoodSourceList)
                             {
