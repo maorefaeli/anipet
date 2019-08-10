@@ -168,7 +168,7 @@ namespace anipet.Controllers
 
                     if (ModelState.IsValid)
                     {
-                        Store store = db.Stores.Where(r => r.Id == viewModel.Store.Id).Include(r => r.Products).Include(r => r.StoreManager).FirstOrDefault();
+                        Store store = db.Stores.Where(r => r.Id == viewModel.Store.Id).Include(r => r.Products).Include(r => r.StoreAdmin).FirstOrDefault();
 
                         store.City = viewModel.Store.City;
                         store.StreetAddress = viewModel.Store.StreetAddress;

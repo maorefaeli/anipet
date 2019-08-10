@@ -1,7 +1,92 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<div class="container">
+    <div class="row">
+        <div class="box" style="flex-direction: column; align-items: center">
+            <div class="col-lg-12">
+                <hr>
+                <h2 class="intro-text text-center">
+                    About
+                    <strong>anipet</strong>
+                </h2>
+                <hr>
+            </div>
+            <div class="col-md-6">
+                <video width="100%" height="289px" frameborder="0" controls autoplay loop a>
+                    <source src="~/Content/videos/crazy video for anipet.mp4" type="video/mp4" />
+                </video>
+            </div>
+
+            <div id="expression" class="col-md-6">
+                <p id="AboutData">
+
+                </p>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="box" style="flex-direction:column">
+            <div class="col-lg-12">
+                <hr>
+                <h2 class="intro-text text-center">
+                    Meet Our
+                    <strong>Team</strong>
+                </h2>
+                <hr>
+            </div>
+            <div style="flex-direction:row">
+                <div class="col-sm-3 text-center">
+                    <h3>
+                        Alon A.
+                        <br />
+                        <strong>CEO</strong>
+                    </h3>
+                </div>
+                <div class="col-sm-3 text-center">
+                    <h3>
+                        Shai L.
+                        <br />
+                        <strong>Manager</strong>
+                    </h3>
+                </div>
+                <div class="col-sm-3 text-center">
+                    <h3>
+                        Guy S.
+                        <br />
+                        <strong>CTO</strong>
+                    </h3>
+                </div>
+                <div class="col-sm-3 text-center">
+                    <h3>
+                        Maor R.
+                        <br />
+                        <strong>Team-Leader</strong>
+                    </h3>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="box" style="flex-direction:column">
+            
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#AboutData").ready(function () {
+        $.ajax({
+            url: "\\Home\\GetAboutData",
+            success: function (result) {
+                $("#AboutData").html(result);
+            }
+        });
+    });
+</script>
