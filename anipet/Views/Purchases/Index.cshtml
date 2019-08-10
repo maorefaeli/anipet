@@ -1,39 +1,63 @@
 ﻿@model IEnumerable<anipet.Models.Purchase>
 
 @{
+    anipet.Models.User activeUser = ((anipet.Models.User)Session["User"]);
     ViewBag.Title = "Index";
 }
+<div class="box purchases-container">
+    <hr>
+    <div class="row">
+        <h class="intro-text text-center col-md-2 col-md-offset-5">
+            <strong>Purchases List</strong>
+        </h>
+        @if (activeUser != null && activeUser.IsAdmin)
+        {
+            <aside class="text-right col-md-2 col-md-offset-2">
+                <i class="fa fa-home"></i>
+                @Html.ActionLink("Create New", "Create")
+            </aside>
+        }
+    </div>
+    <table class="table" style="margin-left: 140px; width: 90%;">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Purchase_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th></th>
+        </tr>
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PurchaseId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PurchaseId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Purchase_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @if (activeUser != null && activeUser.IsAdmin)
+                    {
+                        <text>|</text>
+                        <a href="/Purchases/Delete/@Html.DisplayFor(modelItem => item.Id)"><i class="fa fa-remove"></i></a>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>

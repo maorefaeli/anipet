@@ -1,47 +1,58 @@
-﻿@model anipet.Models.Purchase
+﻿@model anipet.Models.Purchase.CreatePurchaseViewModel
 
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
-
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
+
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Purchase</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.PurchaseId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PurchaseId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PurchaseId, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <div class="box">
+        <hr>
+        <h2 class="intro-text text-center">
+            <strong>Create</strong>
+            <small>New Purchase</small>
+        </h2>
+        <hr>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <div class="container  col-lg-6 col-lg-offset-3">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <div>
+                    @Html.EditorFor(model => model.Purchase.Purchase_Id, new { htmlAttributes = new { @placeholder = "Purchase_Id", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Purchase.Purchase_Id, "", new { @class = "text-danger" })
+                </div>
             </div>
+
+
+            <div class="form-group">
+                <div>
+                    @Html.ListBoxFor(model => model.User_id, ViewBag.UsersList as MultiSelectList, new { @class = "form-control multiple", multiple = "multiple" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    @Html.ListBoxFor(model => model.Product_ids, ViewBag.ProductList as MultiSelectList, new { @class = "form-control multiple", multiple = "multiple" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <div class="col-lg-offset-9 col-lg-1">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                    <div class="col-lg-offset-1 col-lg-1" style="margin-top:6px">
+                        <a href="/Purchases">Back</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
