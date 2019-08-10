@@ -175,6 +175,7 @@
     <Compile Include="Controllers\StoresController.cs" />
     <Compile Include="Controllers\SuggestionController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="DAL\AniPetInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -321,6 +322,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\about\" />
+    <Folder Include="Views\AniPetInitializer\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
