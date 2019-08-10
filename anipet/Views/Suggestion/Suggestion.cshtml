@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Suggestion";
+}
+
+<br /><br />
+
+<script>var canvasObject = document.getElementById('canvas');
+    var canvasContext = canvasObject.getContext('2d');
+    var imageObject = new Image();
+
+    imageObject.src = '../../Content/Images/Silk.jpg';
+
+    imageObject.onload = function () {
+        canvasContext.drawImage(imageObject, 0, 0);
+    };</script>
+<hr class="visible-xs">
+<p><a href="Product/Details/@ViewBag.suggestion.Id">@ViewBag.suggestion.Name</a></p>
+
+
