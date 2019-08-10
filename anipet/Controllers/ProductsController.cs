@@ -17,7 +17,7 @@ namespace anipet.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            return View(db.Prodcts.ToList());
+            return View(db.Products.ToList());
         }
 
         // GET: Products/Details/5
@@ -27,7 +27,7 @@ namespace anipet.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Prodcts.Find(id);
+            Product product = db.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace anipet.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Prodcts.Add(product);
+                db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace anipet.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Prodcts.Find(id);
+            Product product = db.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace anipet.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Prodcts.Find(id);
+            Product product = db.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace anipet.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Product product = db.Prodcts.Find(id);
-            db.Prodcts.Remove(product);
+            Product product = db.Products.Find(id);
+            db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

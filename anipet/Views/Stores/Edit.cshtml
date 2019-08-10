@@ -4,47 +4,60 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
 
+<div class="box">
+    <hr>
+    <h2 class="intro-text text-center">
+        <strong>Edit</strong>
+        <small>Store</small>
+    </h2>
+    <hr>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Store</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+    <div class="container  col-lg-6 col-lg-offset-3">
+        @using (Html.BeginForm("Edit", "Stores", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Store.Id)
+                @Html.HiddenFor(model => model.Store.StoreAdmin.Id)
+                <label>Store city:</label>
+                <div class="form-group">
+                    <div>
+                        @Html.EditorFor(model => model.Store.City, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Store.City, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <label>Store street address:</label>
+                <div class="form-group">
+                    <div>
+                        @Html.EditorFor(model => model.Store.StreetAddress, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Store.StreetAddress, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <label>Product that this store has (can be none or multiple):</label>
+                <div class="form-group">
+                    <div>
+                        @Html.ListBoxFor(model => model.ProductIds, ViewBag.ProductList as MultiSelectList, new { @class = "form-control", multiple = "multiple" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div>
+                        <div class="col-lg-offset-9 col-lg-1">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                        </div>
+                        <div class="col-lg-offset-1 col-lg-1" style="margin-top:6px">
+                            <a href="/Stores">Back</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.StreetAddress, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StreetAddress, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.StreetAddress, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
+        }
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+    </div>

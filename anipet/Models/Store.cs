@@ -7,8 +7,8 @@ namespace anipet.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Store must have Manager, please enter store manager")]
-        public User StoreManager { get; set; }
+        [Required(ErrorMessage = "Store must have Admin, please enter store admin")]
+        public User StoreAdmin { get; set; }
 
         public ICollection<Product> Products { get; set; }
 

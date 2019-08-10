@@ -4,37 +4,29 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="box">
+    <hr>
+    <h2 class="intro-text text-center">
+        <strong>Delete</strong>
+        <small>Store</small>
+    </h2>
+    <hr>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Store</h4>
+    <h3 class="intro-text text-center">
+        Are you sure you want to delete the store
+        <strong>@Html.DisplayFor(model => model.City) , @Html.DisplayFor(model => model.StreetAddress)</strong>
+        ?
+    </h3>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StreetAddress)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StreetAddress)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+            <div class="form-actions no-color" style="text-align:center">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
 </div>

@@ -1,39 +1,83 @@
 ﻿@model IEnumerable<anipet.Models.Store>
 
 @{
+    anipet.Models.User activeUser = ((anipet.Models.User)Session["User"]);
+}
+
+@{
     ViewBag.Title = "Index";
 }
+<div class="box stores-container">
+    <hr>
+    <div class="row">
+        <h class="intro-text text-center col-md-2 col-md-offset-5">
+            <strong>Stores List</strong>
+        </h>
 
-<h2>Index</h2>
+        @if (activeUser != null && activeUser.IsAdmin)
+        {
+            <aside class="text-right col-md-2 col-md-offset-2">
+                <i class="fa fa-home"></i>
+                @Html.ActionLink("Create New", "Create")
+            </aside>
+        }
+    </div>
+    <hr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StreetAddress)
-        </th>
-        <th></th>
-    </tr>
+    <table class="table" style="margin-left: 140px; width: 90%;">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StreetAddress)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StreetAddress)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StreetAddress)
+                </td>
+                <td>
+                    @if (activeUser != null && activeUser.IsAdmin)
+                    {
+                        <a href="/Stores/Edit/@Html.DisplayFor(modelItem => item.Id)"><i class="fa fa-pencil"></i></a> <text>|</text>
+                    }
 
-</table>
+                    <a href="/Stores/Details/@Html.DisplayFor(modelItem => item.Id)"><i class="fa fa-info-circle"></i></a>
+
+                    @if (activeUser != null && activeUser.IsAdmin)
+                    {
+                        <text>|</text>
+                        <a href="/Stores/Delete/@Html.DisplayFor(modelItem => item.Id)"><i class="fa fa-remove"></i></a>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+
+    <hr>
+
+
+    @{
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("http://maps.googleapis.com/maps/api/js?key=AIzaSyDl5JheDMo35g4ZEBxuCIrg5uBTzsRcFcc")
+    }
+
+    <section id="map">
+        <div class="map-wrapper">
+            <div class="map-canvas" id="map-canvas" style="align-content:center; height: 800px; width: 1100px;"></div>
+        </div>
+    </section>
+
+
+    <script src="~/Scripts/stores-map.js"></script>
+
+
+</div>
