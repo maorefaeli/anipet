@@ -1,9 +1,0 @@
-diff a/anipet/Migrations/Configuration.cs b/anipet/Migrations/Configuration.cs	(rejected hunks)
-@@ -10,7 +10,6 @@
-         public Configuration()
-         {
-             AutomaticMigrationsEnabled = false;
--=======
-             ContextKey = "anipet.Models.DBContext";
-         }
- 
