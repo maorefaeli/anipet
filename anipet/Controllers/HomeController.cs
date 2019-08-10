@@ -25,7 +25,7 @@ namespace anipet.Controllers
 
         public string GetAboutData()
         {
-            var text = System.IO.File.ReadAllText(Server.MapPath("\\Content\\About\\aboutData.txt"));
+            var text = System.IO.File.ReadAllText(Server.MapPath(@"\Content\About\data.txt"));
             return text;
         }
 

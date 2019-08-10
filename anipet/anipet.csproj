@@ -197,6 +197,7 @@
     <Compile Include="Svm\TextClassificationProblemBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\About\data.txt" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
