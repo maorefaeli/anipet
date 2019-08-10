@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Newtonsoft.Json;
 using anipet.Models;
 using DataAccess;
+using SVMTextClassifier;
+using libsvm;
 ///using SVMTextClassifier;
 //using libsvm;
 

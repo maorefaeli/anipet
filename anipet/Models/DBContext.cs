@@ -5,7 +5,7 @@ namespace anipet.Models
 {
     public class DBContext : DbContext
     {
-        internal IEnumerable<object> Prodcts;
+        //internal IEnumerable<object> Products;
 
         public DbSet<Product> Products { get; set; }
 
