@@ -10,10 +10,7 @@ namespace anipet.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-<<<<<<< HEAD
-=======
             ContextKey = "anipet.Models.DBContext";
->>>>>>> origin/fixing_migrations
         }
 
         protected override void Seed(anipet.Models.DBContext context)
