@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace anipet.DAL
 {
-    public class AniPetInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<DBContext>
+    public class AniPetInitializer : System.Data.Entity.DropCreateDatabaseAlways<DBContext> //DropCreateDatabaseIfModelChanges<DBContext>
     {
         protected override void Seed(DBContext context)
         {
@@ -34,15 +34,6 @@ namespace anipet.DAL
             products.ForEach(s => context.Products.Add(s));
             context.SaveChanges();
 
-            var stores = new List<Store>
-            {
-                new Store{City="Rishon Lezion", StreetAddress="Rotshild 22", StoreAdmin=context.Users.Find(1), Id=1, Products=new List<Product>{context.Products.Find(2), context.Products.Find(4), context.Products.Find(1) } },
-                new Store{City="NewYork", StreetAddress="boulevard of broken dreams 4", StoreAdmin=context.Users.Find(3), Id=2, Products=new List<Product>{context.Products.Find(1), context.Products.Find(4) } },
-                new Store{City="Eilat", StreetAddress="Ahla 12", StoreAdmin=context.Users.Find(3), Id=3, Products=new List<Product>{context.Products.Find(1), context.Products.Find(5), context.Products.Find(3), context.Products.Find(2) } },
-            };
-            stores.ForEach(s => context.Stores.Add(s));
-            context.SaveChanges();
-
             var users = new List<User>
             {
                 new User{Id=1,IsAdmin=true,Password="123",Username="Shai",FavoriteProduct=context.Products.Find(3)},
@@ -65,6 +56,16 @@ namespace anipet.DAL
             };
             purchases.ForEach(s => context.Purchases.Add(s));
             context.SaveChanges();
+            context.SaveChanges();
+
+
+            var stores = new List<Store>
+            {
+                new Store{City="Rishon Lezion", StreetAddress="Rotshild 22", StoreAdmin=context.Users.Find(1), Id=1, Products=new List<Product>{context.Products.Find(2), context.Products.Find(4), context.Products.Find(1) } },
+                new Store{City="NewYork", StreetAddress="boulevard of broken dreams 4", StoreAdmin=context.Users.Find(3), Id=2, Products=new List<Product>{context.Products.Find(1), context.Products.Find(4) } },
+                new Store{City="Eilat", StreetAddress="Ahla 12", StoreAdmin=context.Users.Find(3), Id=3, Products=new List<Product>{context.Products.Find(1), context.Products.Find(5), context.Products.Find(3), context.Products.Find(2) } },
+            };
+            stores.ForEach(s => context.Stores.Add(s));
             context.SaveChanges();
 
         }
