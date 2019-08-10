@@ -178,8 +178,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-=======
     <Compile Include="Migrations\201908100828185_InitialCreate.cs" />
     <Compile Include="Migrations\201908100828185_InitialCreate.Designer.cs">
       <DependentUpon>201908100828185_InitialCreate.cs</DependentUpon>
@@ -188,7 +186,6 @@
     <Compile Include="Migrations\201908101159500_with_newcontrollersandviews.Designer.cs">
       <DependentUpon>201908101159500_with_newcontrollersandviews.cs</DependentUpon>
     </Compile>
->>>>>>> origin/fixing_migrations
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DBContext.cs" />
     <Compile Include="Models\FoodSource.cs" />
