@@ -48,7 +48,6 @@
             </div>
 
             <script src="~/Scripts/jquery-3.4.1.js"></script>
-            <script src="~/Scripts/weather.js"></script>
             <script src="~/Scripts/getWeather.js"></script>
 
         </div>
@@ -69,9 +68,7 @@
                     </li>
                     @if (activeUser != null)
                     {
-                        <li class="nav-item li-2 px-lg-4">
-                            @Html.ActionLink("Fabrics", "Index", "Fabric")
-                        </li>
+                        
                     }
                     @if (activeUser != null && activeUser.IsAdmin)
                     {
