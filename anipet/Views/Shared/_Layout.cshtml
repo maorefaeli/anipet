@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>@ViewBag.Title - Anipet</title>
+    <title>Anipet - @ViewBag.Title</title>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
@@ -20,10 +20,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
-
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700,800" rel="stylesheet">
-    <link rel="icon" href="~/Content/Images/anipetFavicon.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="~/Scripts/jquery-1.10.2.js"></script>
@@ -37,13 +34,10 @@
 
         <div class="row">
 
-
             <div id="temperatureDiv" class="col-lg-6 text-center">
-                <!--<hr />-->
                 <h4>
                     Weather in Rishon Lezion
                 </h4>
-                <!--<hr />-->
                 <p style="color:white">Achieving the weather, just a second.</p>
             </div>
 
@@ -66,24 +60,14 @@
                     <li class="nav-item li-2 px-lg-4">
                         @Html.ActionLink("Home", "Index", "Home")
                     </li>
-                    @if (activeUser != null)
-                    {
-                        
-                    }
                     @if (activeUser != null && activeUser.IsAdmin)
                     {
                         <li class="nav-item li-2 px-lg-4">
                             @Html.ActionLink("Users", "Index", "Users", new { area = "" }, new { @class = "nav-link" })
                         </li>
-                    }
-                    @if (activeUser != null && activeUser.IsAdmin)
-                    {
                         <li class="nav-item li-2 px-lg-4">
                             @Html.ActionLink("FoodSources", "Index", "FoodSources", new { area = "" }, new { @class = "nav-link" })
                         </li>
-                    }
-                    @if (activeUser != null && activeUser.IsAdmin)
-                    {
                         <li class="nav-item li-2 px-lg-4">
                             @Html.ActionLink("Purchases", "Index", "Purchases", new { area = "" }, new { @class = "nav-link" })
                         </li>
@@ -97,10 +81,6 @@
                     <li class="nav-item li-2 px-lg-4">
                         @Html.ActionLink("Contact", "Contact", "Home")
                     </li>
-
-
-
-
                 </ul>
             </div>
         </div>
@@ -108,8 +88,6 @@
 
     <div class="container body-content">
         @RenderBody()
-
-
 
         <footer>
             <div class="col-lg-12">
@@ -122,22 +100,17 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
-
-    <script>
-        $('.carousel').carousel({
-            interval: 4000 //changes the speed
-        })
-    </script>
-
-    <script>
-        $(".ul li").on("click", function () {
-            $(this).siblings().removeClass('active');
-            $(this).addClass("active");
-        });
-
-    </script>
     <script>
         $(document).ready(function () {
+            $('.carousel').carousel({
+                interval: 4000 // changes the speed
+            })
+
+            $(".ul li").on("click", function () {
+                $(this).siblings().removeClass('active');
+                $(this).addClass("active");
+            });
+
             $(window).scroll(function () {
                 if ($(window).scrollTop() > 286) {
                     $('#MainNav').addClass('navbar-fixed-top');

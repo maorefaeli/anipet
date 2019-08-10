@@ -217,10 +217,10 @@
     <Content Include="Content\Images\Food.jpg" />
     <Content Include="Content\Images\imageedit_1_5651215422.png" />
     <Content Include="Content\Images\paws.jpg" />
-    <Content Include="Content\videos\dog_runs_into_the_water_in_slowmotion.mp4" />
+    <Content Include="Content\Videos\dog_runs_into_the_water_in_slowmotion.mp4" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\site.css" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -314,15 +314,12 @@
     <Content Include="Views\Purchases\Edit.cshtml" />
     <Content Include="Views\Purchases\Index.cshtml" />
     <Content Include="Views\Users\Login.cshtml" />
-    <Content Include="Views\Suggestion.cshtml" />
     <Content Include="Views\Stats\Stats.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Suggestion\Suggestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\about\" />
-    <Folder Include="Views\AniPetInitializer\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

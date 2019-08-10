@@ -48,7 +48,6 @@ hr {
     background: #2b363e;
     padding-right: 0 !important;
     padding-left: 0 !important;
-    margin-left: 40px;
 }
 
 .navbar-brand {
@@ -380,7 +379,7 @@ footer p {
 .stores-container {
     display: flex;
     flex-direction: column;
-    justify-content: sp;
+    justify-content: center;
 }
 
 .store-details {
@@ -410,7 +409,7 @@ footer p {
     width: 100%;
 }
 
-.materials-details {
+.food-sources-details {
     display: inline-block;
     text-align: right;
     width: 27%;

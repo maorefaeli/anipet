@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace anipet.DAL
 {
-    public class AniPetInitializer : System.Data.Entity.DropCreateDatabaseAlways<DBContext> //DropCreateDatabaseIfModelChanges<DBContext>
+    public class AnipetInitializer : System.Data.Entity.DropCreateDatabaseAlways<DBContext>
     {
         protected override void Seed(DBContext context)
         {
