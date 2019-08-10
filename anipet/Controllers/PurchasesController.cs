@@ -16,12 +16,10 @@ namespace anipet.Controllers
 
         public class CreatePurchaseViewModel
         {
-            public CreatePurchaseViewModel()
-            {
-            }
+            public CreatePurchaseViewModel() { }
             public Purchase Purchase { get; set; }
-            public int User_id { get; set; }
-            public int[] Product_ids { get; set; }
+            public int UserId { get; set; }
+            public int[] ProductIds { get; set; }
         }
 
         // GET: Purchases
@@ -62,9 +60,9 @@ namespace anipet.Controllers
         // POST: Purchases/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Purchase,User_id,Product_ids")] CreatePurchaseViewModel viewModel)
+        public ActionResult Create([Bind(Include = "Purchase, UserId, ProductIds")] CreatePurchaseViewModel viewModel)
         {
-            var user = db.Users.Find(viewModel.User_id);
+            var user = db.Users.Find(viewModel.UserId);
             viewModel.Purchase.User = user;
 
             ModelState.Remove("Purchase.User");
@@ -75,7 +73,7 @@ namespace anipet.Controllers
                 var date = DateTime.Now.Date;
                 viewModel.Purchase.Date = date;
 
-                foreach (var product_id in viewModel.Product_ids)
+                foreach (var product_id in viewModel.ProductIds)
                 {
                     var product = db.Products.Find(product_id);
                     viewModel.Purchase.Product = product;
