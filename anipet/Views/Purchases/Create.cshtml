@@ -1,4 +1,4 @@
-﻿@model anipet.Models.Purchase
+﻿@model anipet.Controllers.PurchasesController.CreatePurchaseViewModel
 
 @{
     ViewBag.Title = "Create Purchase";
@@ -22,19 +22,19 @@
 
             <div class="form-group">
                 <div>
-                    @Html.EditorFor(model => model.PurchaseId, new { htmlAttributes = new { @placeholder = "Purchase Id", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PurchaseId, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Purchase.PurchaseId, new { htmlAttributes = new { @placeholder = "Purchase Id", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Purchase.PurchaseId, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
                 <div>
-                    @Html.ListBoxFor(model => model.User, ViewBag.UsersList as MultiSelectList, new { @class = "form-control multiple", multiple = "multiple" })
+                    @Html.ListBoxFor(model => model.UserId, ViewBag.UsersList as MultiSelectList, new { @class = "form-control multiple", multiple = "multiple" })
                 </div>
             </div>
             <div class="form-group">
                 <div>
-                    @Html.ListBoxFor(model => model.Product, ViewBag.ProductList as MultiSelectList, new { @class = "form-control multiple", multiple = "multiple" })
+                    @Html.ListBoxFor(model => model.ProductIds, ViewBag.ProductList as MultiSelectList, new { @class = "form-control multiple", multiple = "multiple" })
                 </div>
             </div>
 

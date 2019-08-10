@@ -39,7 +39,7 @@
                 <label>Stores that have that Product (can be none or multiple):</label>
                 <div class="form-group" style="min-height: 170px">
                     <div>
-                        @Html.ListBoxFor(model => model.StoresIds, ViewBag.storesList as MultiSelectList, new { @class = "form-control multiple", multiple = "multiple" })
+                        @Html.ListBoxFor(model => model.StoresIds, ViewBag.StoresList as MultiSelectList, new { @class = "form-control multiple", multiple = "multiple" })
                     </div>
                 </div>
 

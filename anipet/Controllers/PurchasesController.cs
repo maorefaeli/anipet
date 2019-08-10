@@ -70,7 +70,7 @@ namespace anipet.Controllers
 
             if (ModelState.IsValid)
             {
-                var date = DateTime.Now.Date;
+                var date = DateTime.UtcNow.Date;
                 viewModel.Purchase.Date = date;
 
                 foreach (var product_id in viewModel.ProductIds)
