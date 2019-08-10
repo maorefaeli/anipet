@@ -1,0 +1,156 @@
+﻿
+@{
+    ViewBag.Title = "Stats";
+}
+
+<div class="stat-chart" id="statistics-pie">
+    <p>The following chart shows the amount of Products there are in every store</p>
+    <div class="pie"></div>
+    <p>Store (hover over the graph to see):</p>
+    <p id="tooltip"></p>
+</div>
+
+<br /><br />
+<div class="stat-chart" id="statistics-bar">
+    <p>The following chart compares the amount of Products there are for each food source</p>
+    <div class="bar" id="statistics-the-bar"></div>
+</div>
+
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<script>
+
+    // draw a pie
+    function drawPie(jsonData) {
+
+        // height and width of the svg
+        var h = 200;
+        var w = 200;
+
+        // inner and outer radius of the pie
+        var innerRadius = w / 4;
+        var outerRadius = w / 2;
+
+        // generate pie as function to be called and handel data
+        var pie = d3.pie().value(function (d) {
+            return d.count;
+        });
+
+        // create the color schim, d3 does that for us, generates 10 scale ordnal
+        var color = d3.schemeCategory10;
+
+        // will be used to generate the path attribute
+        var arc = d3.arc()
+          .innerRadius(innerRadius)
+          .outerRadius(outerRadius);
+
+        // create the svg canvas
+        var svg = d3.select('.pie')
+          .append('svg')
+          .attr('width', w)
+          .attr('height', h);
+
+        // set up groups of arcs
+        var arcs = svg.selectAll('g.arc')
+          .data(pie(jsonData))
+          .enter()
+          .append('g')
+          .attr('class', 'arc')
+          .attr('transform', 'translate(' + outerRadius + ', ' + outerRadius + ')')
+          .on("mouseover", function (d) {
+              d3.select('#tooltip')
+                .style("visibility", "visible")
+                  .text(d.data.store);
+          })
+          .on("mousemove", function () {
+              d3.select('#tooltip')
+                .style("top", (event.pageY - 10) + "px")
+                .style("left", (event.pageX + 10) + "px");
+          })
+          .on("mouseout", function () {
+              d3.select('#tooltip')
+                .style("visibility", "hidden");
+          });
+
+        // add path to groups
+        arcs.append('path')
+          .attr('fill', function (d, i) {
+              return color[i];
+          })
+          .attr('d', arc);
+
+        // append text
+        arcs.append('text')
+          .attr("transform", function (d) {
+              return "translate(" + arc.centroid(d) + ")"; // get the center point of the shape
+          })
+          .attr("text-anchor", "middle")
+          .text(function (d) {
+              return d.value;
+          });
+
+    }
+
+    function drawBar(jsonData) {
+        var margin = { top: 20, right: 20, bottom: 30, left: 40 },
+            width = 700 - margin.left - margin.right,
+            height = 300 - margin.top - margin.bottom;
+
+        // set the ranges
+        var x = d3.scaleBand()
+                  .range([0, width])
+                  .padding(0.1);
+        var y = d3.scaleLinear()
+                  .range([height, 0]);
+
+        // get some color in
+        var color = d3.schemeCategory20;
+
+        // append the svg object to the body of the page
+        // append a 'group' element to 'svg'
+        // moves the 'group' element to the top left margin
+        var svg = d3.select(".bar").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+            .attr("transform",
+                  "translate(" + margin.left + "," + margin.top + ")");
+        // Scale the range of the data in the domains
+        x.domain(jsonData.map(function (d) { return d.foodSource; }));
+        y.domain([0, d3.max(jsonData, function (d) { return d.count; })]);
+
+        // append the rectangles for the bar chart
+        var bars =  svg.selectAll(".bar")
+             .data(jsonData)
+           .enter().append("rect")
+            .attr("class", "bar")
+            .attr("x", function (d) { return x(d.foodSource); })
+             .attr("width", x.bandwidth())
+            .attr("y", function (d) { return y(d.count); })
+            .attr("height", function (d) { return height - y(d.count); })
+             .attr('fill', function (d, i) { return color[i]; });
+
+        // add the x Axis
+        svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
+
+        // add the y Axis
+        svg.append("g")
+            .call(d3.axisLeft(y))
+            .append("text")
+              .attr("transform", "rotate(-90)")
+              .attr("y", 6)
+              .attr("dy", "-35px")
+              .text("Calories");
+    }
+
+
+    var ProductByFoodSourceJSON = JSON.parse('@Html.Raw(ViewBag.ProductByFoodSource)');
+    drawBar(ProductByFoodSourceJSON);
+
+    var ProductByStoreJSON = JSON.parse('@Html.Raw(ViewBag.ProductByStore)');
+    drawPie(ProductByStoreJSON);
+</script>
+
