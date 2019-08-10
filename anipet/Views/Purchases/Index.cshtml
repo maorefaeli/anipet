@@ -1,16 +1,19 @@
 ﻿@model IEnumerable<anipet.Models.Purchase>
 
 @{
-    anipet.Models.User activeUser = ((anipet.Models.User)Session["User"]);
-    ViewBag.Title = "Index";
+    anipet.Models.User currentUser = ((anipet.Models.User)Session["User"]);
+    ViewBag.Title = "Purchases";
 }
+
+@Html.Partial("Navbar", "Purchases")
+
 <div class="box purchases-container">
     <hr>
     <div class="row">
         <h class="intro-text text-center col-md-2 col-md-offset-5">
             <strong>Purchases List</strong>
         </h>
-        @if (activeUser != null && activeUser.IsAdmin)
+        @if (currentUser != null && currentUser.IsAdmin)
         {
             <aside class="text-right col-md-2 col-md-offset-2">
                 <i class="fa fa-home"></i>
@@ -51,7 +54,7 @@
                     @Html.DisplayFor(modelItem => item.Date)
                 </td>
                 <td>
-                    @if (activeUser != null && activeUser.IsAdmin)
+                    @if (currentUser != null && currentUser.IsAdmin)
                     {
                         <text>|</text>
                         <a href="/Purchases/Delete/@Html.DisplayFor(modelItem => item.Id)"><i class="fa fa-remove"></i></a>

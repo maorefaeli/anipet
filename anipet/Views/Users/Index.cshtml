@@ -1,11 +1,10 @@
 ﻿@model IEnumerable<anipet.Models.User>
 @{
-    anipet.Models.User activeUser = ((anipet.Models.User)Session["User"]);
+    anipet.Models.User currentUser = (anipet.Models.User)Session["User"];
+    ViewBag.Title = "Users";
 }
 
-@{
-    ViewBag.Title = "Index";
-}
+@Html.Partial("Navbar", "Users")
 
 <div class="box" style="flex-direction: column">
     <hr />
@@ -15,7 +14,7 @@
             <h>List</h>
         </h>
 
-        @if (activeUser != null && activeUser.IsAdmin)
+        @if (currentUser != null && currentUser.IsAdmin)
         {
             <aside class="text-right col-md-2 col-md-offset-2">
                 <i class="fa fa-user-plus"></i>
@@ -81,7 +80,7 @@
 
         @foreach (var item in Model)
         {
-            if (activeUser.Id != item.Id)
+            if (currentUser.Id != item.Id)
             {
                 <tr>
                     <td>

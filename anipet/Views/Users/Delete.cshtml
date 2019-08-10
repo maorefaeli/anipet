@@ -1,7 +1,7 @@
 ﻿@model anipet.Models.User
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete User";
 }
 
 <div class="box">
@@ -14,7 +14,6 @@
     <h3 class="intro-text text-center">Are you sure you want to delete<strong> @Html.DisplayFor(model => model.Username)</strong>?</h3>
     <div>
         <hr />
-
 
         @using (Html.BeginForm())
         {

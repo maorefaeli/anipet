@@ -1,10 +1,8 @@
 ﻿@model anipet.Models.Store
 
 @{
-    anipet.Models.User activeUser = ((anipet.Models.User)Session["User"]);
-}
-@{
-    ViewBag.Title = "Details";
+    anipet.Models.User currentUser = ((anipet.Models.User)Session["User"]);
+    ViewBag.Title = "Store Details";
 }
 
 <div class="box stores-container">
@@ -26,7 +24,7 @@
             <dd>
                 @Html.DisplayFor(model => model.StreetAddress)
             </dd>
-            @if (activeUser != null && activeUser.IsAdmin)
+            @if (currentUser != null && currentUser.IsAdmin)
             {
                 <dt>
                     Store Manager
@@ -65,7 +63,7 @@
         </dl>
     </div>
     <p style="margin-left: 900px;">
-        @if (activeUser != null && activeUser.IsAdmin)
+        @if (currentUser != null && currentUser.IsAdmin)
         {
             @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
             <text>|</text>

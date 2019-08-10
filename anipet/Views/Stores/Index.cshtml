@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<anipet.Models.Store>
 
 @{
-    anipet.Models.User activeUser = ((anipet.Models.User)Session["User"]);
+    anipet.Models.User currentUser = (anipet.Models.User)Session["User"];
+    ViewBag.Title = "Stores";
 }
 
-@{
-    ViewBag.Title = "Index";
-}
+@Html.Partial("Navbar", "Stores")
+
 <div class="box stores-container">
     <hr>
     <div class="row">
@@ -14,7 +14,7 @@
             <strong>Stores List</strong>
         </h>
 
-        @if (activeUser != null && activeUser.IsAdmin)
+        @if (currentUser != null && currentUser.IsAdmin)
         {
             <aside class="text-right col-md-2 col-md-offset-2">
                 <i class="fa fa-home"></i>
@@ -45,14 +45,14 @@
                     @Html.DisplayFor(modelItem => item.StreetAddress)
                 </td>
                 <td>
-                    @if (activeUser != null && activeUser.IsAdmin)
+                    @if (currentUser != null && currentUser.IsAdmin)
                     {
                         <a href="/Stores/Edit/@Html.DisplayFor(modelItem => item.Id)"><i class="fa fa-pencil"></i></a> <text>|</text>
                     }
 
                     <a href="/Stores/Details/@Html.DisplayFor(modelItem => item.Id)"><i class="fa fa-info-circle"></i></a>
 
-                    @if (activeUser != null && activeUser.IsAdmin)
+                    @if (currentUser != null && currentUser.IsAdmin)
                     {
                         <text>|</text>
                         <a href="/Stores/Delete/@Html.DisplayFor(modelItem => item.Id)"><i class="fa fa-remove"></i></a>

@@ -1,10 +1,7 @@
 ﻿@model anipet.Models.User
 @{
-    anipet.Models.User activeUser = ((anipet.Models.User)Session["User"]);
-}
-
-@{
-    ViewBag.Title = "Edit";
+    anipet.Models.User currentUser = ((anipet.Models.User)Session["User"]);
+    ViewBag.Title = "Edit User";
 }
 
 <div class="box" style="flex-direction:column">
@@ -40,7 +37,7 @@
                 </div>
             </div>
 
-            @if (activeUser != null && activeUser.IsAdmin)
+            @if (currentUser != null && currentUser.IsAdmin)
             {
                 <div class="form-group">
                     @Html.LabelFor(model => model.IsAdmin, htmlAttributes: new { @class = "control-label col-md-2" })

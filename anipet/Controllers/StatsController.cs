@@ -13,7 +13,7 @@ namespace anipet.Controllers
         private DBContext db = new DBContext();
 
         [ChildActionOnly]
-        public PartialViewResult getStats()
+        public PartialViewResult GetStats()
         {
             var ProductByFoodSource = db.Products.GroupBy(r => r.FoodSource).Select(g => new { foodSource = ((FoodSource)g.Key).Name, count = g.Count() }).ToList();
             var ProductByFoodSourceJSON = JsonConvert.SerializeObject(ProductByFoodSource);
