@@ -29,7 +29,7 @@ namespace anipet.DAL
                 new Product{Name="Bonzo", ProductWeightInKilo=98, FoodSource=context.FoodSources.Find(2), Id=2},
                 new Product{Name="Trovet", ProductWeightInKilo=120, FoodSource=context.FoodSources.Find(2), Id=3},
                 new Product{Name="Salmon", ProductWeightInKilo=360, FoodSource=context.FoodSources.Find(4), Id=4},
-                new Product{Name="Shtihim", ProductWeightInKilo=2, FoodSource=context.FoodSources.Find(3), Id=5},
+                new Product{Name="Waffle", ProductWeightInKilo=2, FoodSource=context.FoodSources.Find(3), Id=5},
             };
             products.ForEach(s => context.Products.Add(s));
             context.SaveChanges();
