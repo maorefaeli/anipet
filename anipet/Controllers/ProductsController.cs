@@ -176,8 +176,8 @@ namespace anipet.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.storesList = new MultiSelectList(db.Stores.Select(i => new { Id = i.Id, Store = i.City + ", " + i.StreetAddress }), "Id", "Store");
-            ViewBag.foodSourceList = new SelectList(db.FoodSources.Select(i => new { Id = i.Id, Name = i.Name }), "Id", "Name");
+            ViewBag.StoresList = new MultiSelectList(db.Stores.Select(i => new { Id = i.Id, Store = i.City + ", " + i.StreetAddress }), "Id", "Store");
+            ViewBag.FoodSourceList = new SelectList(db.FoodSources.Select(i => new { Id = i.Id, Name = i.Name }), "Id", "Name");
             CreateProductsViewModel viewModel = new CreateProductsViewModel
             {
                 Product = product
