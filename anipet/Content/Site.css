@@ -46,8 +46,8 @@ hr {
 .body-content {
     color: #ffffff;
     background: #2b363e;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
     margin-left: 40px;
 }
 
@@ -57,10 +57,16 @@ hr {
     letter-spacing: 2px;
 }
 
+.tempartureImg{
+    width: 90px;
+    height: 90px;
+}
+
 .navbar-nav {
     text-transform: uppercase;
     font-weight: 400;
     letter-spacing: 2px;
+    display: inherit !important;
 }
 
 .img-full {
@@ -259,7 +265,6 @@ footer p {
     }
 
     .navbar-nav {
-        display: table;
         float: none;
         margin: 0 auto;
         table-layout: fixed;

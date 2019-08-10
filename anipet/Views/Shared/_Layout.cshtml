@@ -47,8 +47,9 @@
                 <p style="color:white">Achieving the weather, just a second.</p>
             </div>
 
+            <script src="~/Scripts/jquery-3.4.1.js"></script>
             <script src="~/Scripts/weather.js"></script>
-            <script src="https://query.yahooapis.com/v1/public/yql?q=select item, wind from weather.forecast where woeid in (select woeid from geo.places(1) where text='Rishon LeZion, il') and u='c'&format=json&callback=weatherCallback"></script>
+            <script src="~/Scripts/getWeather.js"></script>
 
         </div>
 

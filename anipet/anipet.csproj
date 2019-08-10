@@ -166,6 +166,9 @@
     <Content Include="Content\Images\Anipet-background.jpg" />
     <Content Include="Content\Images\anipetFavicon.jpg" />
     <Content Include="Content\Images\AnipetLogo.png" />
+    <Content Include="Content\Images\cool-dog.png" />
+    <Content Include="Content\Images\cold-dog.png" />
+    <Content Include="Content\Images\dog-sweating.png" />
     <Content Include="Content\Images\food-1.jpg" />
     <Content Include="Content\Images\food-2.jpg" />
     <Content Include="Content\Images\food-3.jpg" />
@@ -198,6 +201,7 @@
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\getWeather.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -218,6 +222,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\weather.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -269,6 +274,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\about\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
