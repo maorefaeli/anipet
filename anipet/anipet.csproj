@@ -301,11 +301,10 @@
     <Content Include="Views\Suggestion.cshtml" />
     <Content Include="Views\Stats\Stats.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Suggestion\Suggestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Suggestion\" />
-    <Folder Include="Views\TextClassificationProblemBuilder\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

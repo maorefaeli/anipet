@@ -17,7 +17,7 @@ namespace anipet.Controllers
         private DBContext db = new DBContext();
 
         [ChildActionOnly]
-        public PartialViewResult getSuggestion(string userName)
+        public PartialViewResult GetSuggestion(string userName)
         {
             List<string> x = db.Purchases.OrderBy(p => p.Id).Select(p => p.User.Username).ToList();
             double[] y = db.Purchases.OrderBy(p => p.Id).Select(p => (double)p.Product.Id).ToArray();
@@ -33,7 +33,7 @@ namespace anipet.Controllers
 
             var predictedY = model.Predict(newX);
             var prediction = db.Products.Find((int)predictedY);
-            ViewBag.suggestion = prediction;
+            ViewBag.Suggestion = prediction;
 
             return PartialView("~/Views/Suggestion/Suggestion.cshtml");
         }
