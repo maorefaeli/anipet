@@ -47,7 +47,7 @@ namespace anipet.Controllers
             {
                 if (curUser.IsAdmin)
                 {
-                    ViewBag.ProductList = new MultiSelectList(db.Prodcts.Select(i => new { Id = i.Id, Name = i.Name }), "Id", "Name");
+                    ViewBag.ProductList = new MultiSelectList(db.Products.Select(i => new { Id = i.Id, Name = i.Name }), "Id", "Name");
                     ViewBag.UsersList = new MultiSelectList(db.Users.Select(i => new { Id = i.Id, Name = i.Username }), "Id", "Name");
                     return View();
                 }
@@ -77,7 +77,7 @@ namespace anipet.Controllers
 
                 foreach (var product_id in viewModel.Product_ids)
                 {
-                    var product = db.Prodcts.Find(product_id);
+                    var product = db.Products.Find(product_id);
                     viewModel.Purchase.Product = product;
 
                     db.Purchases.Add(viewModel.Purchase);
