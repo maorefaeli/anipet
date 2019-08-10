@@ -65,13 +65,11 @@ namespace anipet.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Error", new { message = "you are not authorized" });
+                    return RedirectToAction("Index", "Error", new { message = "Missing permissions" });
                 }
             }
             return RedirectToAction("Index", "Error");
         }
-
-
 
         // POST: Stores/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -139,7 +137,7 @@ namespace anipet.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Error", new { message = "you have no permissions!" });
+                    return RedirectToAction("Index", "Error", new { message = "Missing permissions" });
                 }
             }
             else
@@ -190,7 +188,7 @@ namespace anipet.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Error", new { message = "you are not authorized" });
+                    return RedirectToAction("Index", "Error", new { message = "Missing permissions" });
                 }
             }
             else

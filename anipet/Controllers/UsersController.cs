@@ -60,7 +60,7 @@ namespace anipet.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Error", new { message = "you are not autorized" });
+                    return RedirectToAction("Index", "Error", new { message = "Missing permissions" });
                 }
             }
             return RedirectToAction("Index", "Error");

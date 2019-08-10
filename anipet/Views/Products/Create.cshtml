@@ -1,48 +1,63 @@
-﻿@model anipet.Models.Product
+﻿@model anipet.Controllers.ProductsController.CreateProductsViewModel
 
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<div class="box" style="flex-direction: column">
+    <hr>
+    <h2 class="intro-text text-center">
+        <strong>Create</strong>
+        <small>New Product</small>
+    </h2>
+    <hr>
+    <div class="container  col-lg-6 col-lg-offset-3">
+        @using (Html.BeginForm("Create", "Products", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div>
+                        @Html.EditorFor(model => model.Fabric.Name, new { htmlAttributes = new { @placeholder = "Product Name", @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Fabric.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div>
+                        @Html.DropDownListFor(model => model.FoodSourceId, ViewBag.FoodSourceList as SelectList, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FoodSourceId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <label>Food Source weight in kilos:</label>
+                <div class="form-group">
+                    <div>
+                        @Html.EditorFor(model => model.Fabric.ProductWeightInKilo, new { htmlAttributes = new { @class = "form-control", @Value = "0" } })
+                        @Html.ValidationMessageFor(model => model.Fabric.ProductWeightInKilo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <label>Stores that have that Product (can be none or multiple):</label>
+                <div class="form-group" style="min-height: 170px">
+                    <div>
+                        @Html.ListBoxFor(model => model.StoresIds, ViewBag.storesList as MultiSelectList, new { @class = "form-control multiple", multiple = "multiple" })
+                    </div>
+                </div>
 
-
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Product</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div>
+                        <div class="col-lg-offset-9 col-lg-1">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                        <div class="col-lg-offset-1 col-lg-1" style="margin-top:6px">
+                            <a href="/Products">Back</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProductWeightInKilo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ProductWeightInKilo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ProductWeightInKilo, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+        }
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

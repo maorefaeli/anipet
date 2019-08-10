@@ -1,39 +1,201 @@
 ﻿@model IEnumerable<anipet.Models.Product>
+@{
+    anipet.Models.User currentUser = (anipet.Models.User)Session["User"];
+}
 
 @{
     ViewBag.Title = "Index";
 }
+<div class="box fabric-edit">
+    <hr />
+    <div class="row">
+        <h class="intro-text text-center col-md-2 col-md-offset-5">
+            <strong>Product</strong>
+            <h>List</h>
+        </h>
 
-<h2>Index</h2>
+        @if (currentUser != null && currentUser.IsAdmin)
+        {
+            <aside class="text-right col-md-2 col-md-offset-2">
+                <i class="fa fa-cart-plus"></i>
+                @Html.ActionLink("Add New Product", "Create")
+            </aside>
+        }
+    </div>
+    <hr />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductWeightInKilo)
-        </th>
-        <th></th>
-    </tr>
+    <aside class="text-center">Enter search parameters and click the search button</aside>
+    <hr />
+    <div class="container">
+        @using (Html.BeginForm("Search", "Products", FormMethod.Get))
+        {
+            <form class="form-inline">
+                <div class="form-group col-md-2 col-md-offset-1">
+                    <div>
+                        <input class="form-control" type="text" name="name" placeholder="Fabric name" />
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <div>
+                        <select class="form-control" name="material">
+                            <option id="grayOption" value="" selected>Select Food Source</option>
+                            @foreach (var name in ViewBag.FoodSourceList)
+                            {
+                                <option value="@name">@name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <div>
+                        <input class="form-control" type="number" name="price" min="0" placeholder="Max Price" />
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <div>
+                        <select class="form-control" name="city">
+                            <option id="grayOption" value="" selected>Select City</option>
+                            @foreach (var City in ViewBag.StoresList)
+                            {
+                                <option value="@City">@City</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <button type="submit" class="btn btn-info">
+                        <span class="glyphicon glyphicon-search">
+                            Search
+                        </span>
+                    </button>
+                </div>
+            </form>
+        }
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductWeightInKilo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    <br />
 
-</table>
+    <table class="table" id="ProductTable">
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductWeightInKilo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FoodSource.Name)
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Available In Stores
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="#" id=@Html.DisplayFor(modelItem => item.Id)>
+                        @if (ViewBag.FavoriteProduct != null && ViewBag.FavoriteProduct.Id == item.Id)
+                        {
+                            <i class="fa fa-star" style="color:gold;"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-star"></i>
+                        }
+                    </a>
+                    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                    <script type="text/javascript">
+                            $(function () {
+                                $("#@Html.DisplayFor(modelItem => item.Id)").click(function () {
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/Products/ChangeFavorite",
+                                        data: '{id: @Html.DisplayFor(modelItem => item.Id) }',
+                                        contentType: "application/json; charset=utf-8",
+                                        dataType: "json",
+                                        success: function (response) {
+                                            if (response.PrevFavorite == "#@Html.DisplayFor(modelItem => item.Id)") {
+                                                $("#@Html.DisplayFor(modelItem => item.Id)").find("i").css('color', 'cornflowerblue');
+                                            } else {
+                                                $("#@Html.DisplayFor(modelItem => item.Id)").find("i").css('color', 'gold');
+                                            }
+                                            if (response.PrevFavorite != "#-1") {
+                                                $(response.PrevFavorite).find("i").css('color', 'cornflowerblue');
+                                            }
+                                        },
+                                        failure: function (response) {
+                                            alert('Oops, something went wrong');
+                                        },
+                                        error: function (response) {
+                                            alert('Oops, something went wrong');
+                                        }
+                                    });
+                                    return false;
+                                });
+                            });
+                    </script>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductWeightInKilo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FoodSource.Name)
+                </td>
+                <td>
+                    @{
+                        var price = item.FoodSource.SourcePricePerKilo * item.ProductWeightInKilo;
+                        @Html.DisplayFor(modelItem => price)
+                    }
+                </td>
+                <td>
+                    @if (item.Stores != null && item.Stores.Count > 0)
+                    {
+                        <ul>
+                            @{
+
+                                foreach (var store in item.Stores)
+                                {
+                                    var str = store.City + ", " + store.StreetAddress;
+
+                                    <li>
+                                        <a href="/Stores/Details/@store.Id">@Html.DisplayFor(modelItem => str)</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <text>&emsp;&emsp;Out of Stock</text>
+                    }
+                </td>
+                <td>
+                    @if (currentUser != null && currentUser.IsAdmin)
+                    {
+                        <a href="/Products/Edit/@Html.DisplayFor(modelItem => item.Id)"><i class="fa fa-pencil"></i></a> <text>|</text>
+                    }
+
+                    <a href="/Products/Details/@Html.DisplayFor(modelItem => item.Id)"><i class="fa fa-info-circle"></i></a>
+
+                    @if (currentUser != null && currentUser.IsAdmin)
+                    {
+                        <text>|</text>
+                        <a href="/Products/Delete/@Html.DisplayFor(modelItem => item.Id)"><i class="fa fa-remove"></i></a>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>
