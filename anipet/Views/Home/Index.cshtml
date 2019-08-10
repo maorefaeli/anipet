@@ -1,10 +1,16 @@
-﻿<nav class="navbar navbar-expand-lg navbar-light bg-light">#
+﻿@{
+    ViewBag.Title = "anipet";
+    anipet.Models.User activeUser = ((anipet.Models.User)Session["User"]);
+}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    #
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item active">s
+            <li class="nav-item active">
                 <a class="nav-link" href="/Home/Index">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
@@ -58,7 +64,19 @@
     </div>
     <div class="row d-flex justify-content-center">
         <div class="box">
-
+            @if (activeUser != null)
+            {
+                <div class="col-lg-12 text-center">
+                    <hr>
+                    <h2 class="intro-text text-center">
+                        You Might
+                        <strong>Like</strong>
+                    </h2>
+                    <hr>
+                    <hr class="visible-xs">
+                    <p>@Html.Action("getSuggestion", "Suggestion", new { userName = activeUser.Username })</p>
+                </div>
+            }
         </div>
     </div>
     <div class="row d-flex justify-content-center">
@@ -67,7 +85,7 @@
                 <hr>
                 <h2 class="intro-text text-center">
                     Best Selling
-                    <strong>Lean meats</strong>
+                    <strong>Product</strong>
                 </h2>
                 <hr>
                 <canvas id="canvas" class="img-responsive img-border" style="border-radius: 100px"></canvas>
@@ -85,7 +103,7 @@
 
                 </script>
                 <hr class="visible-xs">
-
+                <p><a href="Product/Details/@ViewBag.mostPopProduct.Id">@ViewBag.mostPopProduct.Name</a></p>
             </div>
         </div>
     </div>
@@ -99,6 +117,7 @@
                 </h2>
                 <hr>
                 <hr class="visible-xs">
+                <p>@Html.Action("getStats", "Stats")</p>
 
             </div>
         </div>
