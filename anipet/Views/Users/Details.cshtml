@@ -4,39 +4,68 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="box">
+    <hr>
+    <h2 class="intro-text text-center">
+        <strong>User</strong>
+        <small>details</small>
+    </h2>
+    <hr>
 
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
+    <div style="margin-left:400px">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Username)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Username)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsAdmin)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsAdmin)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.IsManager)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.IsManager)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Stores)
+            </dt>
+            <dd>
+                @if (ViewBag.userStoreList != null && ViewBag.userStoreList.Count > 0)
+                {
+                    <ul style="padding: 0; list-style-type: none;">
+                        @{
+                            foreach (var store in ViewBag.userStoreList)
+                            {
+                                var str = store.City + ", " + store.StreetAddress;
 
-        <dd>
-            @Html.DisplayFor(model => model.Username)
-        </dd>
+                                <li>
+                                    <a href="/Stores/Details/@store.Id">@Html.DisplayFor(modelItem => str)</a>
 
-    </dl>
+                                </li>
+                            }
+                        }
+
+                    </ul>
+                }
+                else
+                {
+                    <text>No stores</text>
+                }
+            </dd>
+        </dl>
+    </div>
+    <p style="margin-left: 900px;">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

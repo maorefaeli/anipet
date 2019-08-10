@@ -1,58 +1,72 @@
 ﻿@model anipet.Models.User
+@{
+    anipet.Models.User activeUser = ((anipet.Models.User)Session["User"]);
+}
 
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<div class="box" style="flex-direction:column">
+    <hr>
+    <h2 class="intro-text text-center">
+        <strong>Edit</strong>
+        <small>user</small>
+    </h2>
+    <hr>
 
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>User</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+        <div class="form-horizontal">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsAdmin, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsAdmin)
-                    @Html.ValidationMessageFor(model => model.IsAdmin, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @if (activeUser != null && activeUser.IsAdmin)
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IsAdmin, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.IsAdmin)
+                            @Html.ValidationMessageFor(model => model.IsAdmin, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="form-group">
+                <div>
+                    <div class="col-md-offset-9 col-md-1">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                    <div class="col-md-1" style="margin-top:6px">
+                        <a href="/Users">Back</a>
+                    </div>
                 </div>
             </div>
         </div>
+    }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {

@@ -1,45 +1,130 @@
 ﻿@model IEnumerable<anipet.Models.User>
+@{
+    anipet.Models.User activeUser = ((anipet.Models.User)Session["User"]);
+}
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="box" style="flex-direction: column">
+    <hr />
+    <div class="row">
+        <h class="intro-text text-center col-md-2 col-md-offset-5">
+            <strong>Users</strong>
+            <h>List</h>
+        </h>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsAdmin)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Username)
-        </th>
-        <th></th>
-    </tr>
+        @if (activeUser != null && activeUser.IsAdmin)
+        {
+            <aside class="text-right col-md-2 col-md-offset-2">
+                <i class="fa fa-user-plus"></i>
+                @Html.ActionLink("Create New", "Create")
+            </aside>
+        }
+    </div>
+    <hr />
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsAdmin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    <aside class="text-center">Enter search parameters and click the Search button below</aside>
+    <hr />
 
-</table>
+    <div class="container">
+        @using (Html.BeginForm("Search", "Users", FormMethod.Get))
+        {
+            <form class="form-inline">
+                <div class="form-group col-md-2 col-md-offset-2">
+                    <div>
+                        <input class="form-control" type="text" name="username" placeholder="Username" />
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <div>
+                        <input class="form-control" type="number" name="minStores" min="0" placeholder="Min Stores" />
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <div>
+                        <input type="radio" name="isAdmin" value="True"> Admin<br>
+                        <input type="radio" name="isAdmin" value="False"> Not Admin<br>
+                        <input type="radio" name="isAdmin" value="dont filter"> Don't Filter<br>
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <button type="submit" class="btn btn-info">
+                        <span class="glyphicon glyphicon-search">
+                            Search
+                        </span>
+                    </button>
+                </div>
+            </form>
+        }
+    </div>
+
+    <br />
+
+    <table class="table" id="UsersTable" style="margin-left: 18%;width: 75%;">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAdmin)
+            </th>
+            <th>
+                Stores managed
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (activeUser.Id != item.Id)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsAdmin)
+                    </td>
+                    <td>
+                        @if (item.Stores != null && item.Stores.Count > 0)
+                        {
+                            <ul>
+                                @{
+                                    foreach (var store in item.Stores)
+                                    {
+                                        var str = store.City + ", " + store.StreetAddress;
+
+                                        <li>
+                                            @Html.DisplayFor(modelItem => str)
+
+                                        </li>
+                                    }
+                                }
+
+                            </ul>
+                        }
+                        else
+                        {
+                            <text>&emsp;&emsp;No stores</text>
+                        }
+                    </td>
+                    <td>
+                        <a href="/Users/Edit/@Html.DisplayFor(modelItem => item.Id)"><i class="fa fa-pencil"></i></a> |
+                        <a href="/Users/Details/@Html.DisplayFor(modelItem => item.Id)"><i class="fa fa-info-circle"></i></a> |
+                        <a href="/Users/Delete/@Html.DisplayFor(modelItem => item.Id)"><i class="fa fa-user-times"></i></a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+
+</div>
