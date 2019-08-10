@@ -3,7 +3,28 @@
 @{
     ViewBag.Title = "Create";
 }
-
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        #
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/Home/Index">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Home/About">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Products/Index">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Users/Login">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -18,7 +39,7 @@
         <div class="form-horizontal">
             <div class="form-group">
                 @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-10 d-flex justify-content-center" style="margin-left: 95px;">
                     @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
                 </div>
@@ -27,7 +48,7 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
                 @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-10 d-flex justify-content-center" style="margin-left: 95px;">
                     @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                 </div>
@@ -35,7 +56,7 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.IsAdmin, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-10 d-flex justify-content-center" style="margin-left: 95px;">
                     <div class="checkbox">
                         @Html.EditorFor(model => model.IsAdmin)
                         @Html.ValidationMessageFor(model => model.IsAdmin, "", new { @class = "text-danger" })
@@ -44,8 +65,8 @@
             </div>
 
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Register" class="btn btn-default" />
+                <div class="col-md-offset-2 col-md-10" style="margin-left:95px;">
+                    <input type="submit" value="Register" class="btn btn-light" />
                 </div>
             </div>
         </div>

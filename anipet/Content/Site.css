@@ -128,7 +128,8 @@ hr {
 .form-horizontal {
     display: flex;
     flex-direction: column;
-    padding-left: 21%;
+    padding-left: 0 !important;
+    text-align: center;
 }
 
 .logo {
@@ -272,6 +273,10 @@ footer p {
     }
 }
 
+.table {
+    color: #ffffff !important;
+}
+
 #grayOption {
     color: #999;
 }
@@ -302,6 +307,10 @@ footer p {
 
 .our-font {
     font-family: Montserrat-Regular;
+}
+
+.control-label {
+    margin-right: 150px;
 }
 
 @font-face {
