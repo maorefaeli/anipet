@@ -175,6 +175,7 @@
     <Compile Include="Controllers\StoresController.cs" />
     <Compile Include="Controllers\SuggestionController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="DAL\AniPetInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -216,6 +217,7 @@
     <Content Include="Content\Images\Food.jpg" />
     <Content Include="Content\Images\imageedit_1_5651215422.png" />
     <Content Include="Content\Images\paws.jpg" />
+    <Content Include="Content\videos\dog_runs_into_the_water_in_slowmotion.mp4" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -320,6 +322,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\about\" />
+    <Folder Include="Views\AniPetInitializer\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
