@@ -1,24 +1,413 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    /* font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif,Assistant; */
+    background: url('Images/paws.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    color: #ffffff -o-background-size: cover;
+    padding-top: 0 !important;
 }
 
-/* Set padding to keep content from hitting the edges */
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: Assistant;
+    /* font-size: small; */
+    font-weight: 600;
+}
+
+h6 {
+    text-transform: uppercase;
+    font-family: "Josefin Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+p {
+    display: flex;
+    font-size: 1.25em;
+    line-height: 1.6;
+    color: black;
+    justify-content: center;
+}
+
+hr {
+    max-width: 400px;
+    border-color: #999999;
+}
+
+.brand,
+.address-bar {
+    display: none;
+}
+
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    color: #ffffff;
+    background: #2b363e;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    margin-left: 40px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+.navbar-brand {
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 2px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.tempartureImg{
+    width: 90px;
+    height: 90px;
+}
+
+.navbar-nav {
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 2px;
+    display: inherit !important;
+}
+
+.img-full {
+    width: 63%;
+    display: inline-block;
+    margin-top: 6%;
+}
+
+.brand-before,
+.brand-name {
+    text-transform: capitalize;
+}
+
+.brand-before {
+    margin: 15px 0;
+}
+
+.brand-name {
+    margin: 0;
+    font-size: 4em;
+}
+
+.tagline-divider {
+    margin: 15px auto 3px;
+    max-width: 250px;
+    border-color: #999999;
+}
+
+.box {
+    padding: 30px 15px;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-inner {
+    width: 550px;
+    height: 350px;
+}
+
+.intro-text {
+    text-transform: uppercase;
+    font-size: 1.25em;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.img-border {
+    float: none;
+    margin: 0 auto 0;
+    border: #999999 solid 1px;
+}
+
+.img-left {
+    float: none;
+    margin: 0 auto 0;
+}
+
+.form-horizontal {
+    display: flex;
+    flex-direction: column;
+    padding-left: 21%;
+}
+
+.logo {
+    display: flex;
+    height: 150px;
+    width: 250px;
+    height: 250px;
+    border-radius: 200px;
+    margin-right: 40px;
+}
+
+#register .form-control, #login .form-control {
+    width: 25% !important;
+}
+
+footer p {
+    margin: 0;
+    padding: 50px 0;
+    text-shadow: 4px 4px 2px #f5f8fa;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+}
+
+@keyframes slidein {
+    from {
+        margin-left: -30%;
+        width: 100%;
+    }
+
+    to {
+        margin-left: 70%;
+        width: 20%;
+    }
+}
+
+@media screen {
+    .brand {
+        display: flex;
+        margin: 0;
+        flex-direction: row;
+        justify-content: center;
+        padding: 30px 0 10px;
+        /* text-align: center; */
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        font-family: "Josefin Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 5em;
+        font-weight: 700;
+        line-height: normal;
+        color: #fff;
+    }
+
+    .top-divider {
+        margin-top: 0;
+    }
+
+    .img-left {
+        float: left;
+        margin-right: 25px;
+    }
+
+    .fa-user-plus:hover {
+        box-shadow: 0px 0px 150px #000000;
+        z-index: 2;
+        -webkit-transition: all 200ms ease-in;
+        -webkit-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -moz-transition: all 200ms ease-in;
+        -moz-transform: scale(1.5);
+        transition: all 200ms ease-in;
+        transform: scale(1.2);
+    }
+
+    .fa-sign-in-alt:hover {
+        box-shadow: 0px 0px 150px #000000;
+        z-index: 2;
+        -webkit-transition: all 200ms ease-in;
+        -webkit-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -moz-transition: all 200ms ease-in;
+        -moz-transform: scale(1.5);
+        transition: all 200ms ease-in;
+        transform: scale(1.2);
+    }
+
+    .fa-sign-out-alt:hover {
+        box-shadow: 0px 0px 150px #000000;
+        z-index: 2;
+        -webkit-transition: all 200ms ease-in;
+        -webkit-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -moz-transition: all 200ms ease-in;
+        -moz-transform: scale(1.5);
+        transition: all 200ms ease-in;
+        transform: scale(1.2);
+    }
+
+    .address-bar {
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: #b78a7f;
+        -webkit-text-fill-color: #ffffff;
+        display: inherit;
+        margin: 0 0 40px;
+        font-weight: bold;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 1.5em;
+        letter-spacing: 2px;
+        color: #ede9e9;
+    }
+
+    .navbar-header {
+        display: none;
+    }
+
+    .navbar {
+        min-height: 0;
+    }
+
+    .navbar-default {
+        display: flex;
+        margin-bottom: 0px;
+        border-bottom-width: 0px;
+        justify-content: center;
+        position: sticky;
+    }
+
+    .nav > li > a {
+        padding: 35px;
+    }
+
+    .navbar-nav > li > a {
+        line-height: normal;
+    }
+
+    .navbar-nav {
+        float: none;
+        margin: 0 auto;
+        table-layout: fixed;
+        font-size: 1.15em;
+    }
+}
+
+#grayOption {
+    color: #999;
+}
+
+@media screen and (min-width:1200px) {
+    .box:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+.li-2:active {
+    background-color: #e7e7e7;
+}
+
+.reviews-section {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+    -webkit-column-gap: 40px;
+    -moz-column-gap: 40px;
+    column-gap: 40px;
+    -webkit-column-rule: 1px solid lightblue;
+    -moz-column-rule: 1px solid lightblue;
+    column-rule: 1px solid lightblue;
+}
+
+.our-font {
+    font-family: Montserrat-Regular;
+}
+
+@font-face {
+    font-family: Montserrat-Regular;
+    src: url(../fonts/Montserrat-Regular.ttf);
+    font-weight: 400;
+}
+
+#statistics-pie {
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    column-count: 3;
+    -webkit-column-width: 100px; /* Chrome, Safari, Opera */
+    -moz-column-width: 100px; /* Firefox */
+    column-width: 100px;
+}
+
+#statistics-bar {
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+    -webkit-column-width: 50px; /* Chrome, Safari, Opera */
+    -moz-column-width: 50px; /* Firefox */
+    column-width: 50px;
+}
+
+#statistics-bar {
+    display: flex;
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+    -webkit-column-width: 50px; /* Chrome, Safari, Opera */
+    -moz-column-width: 50px; /* Firefox */
+    column-width: 50px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#statistics-the-bar {
+    column-span: 2;
+}
+
+#temperatureDiv {
+    color: #ffffff;
+    width: 100%;
+    max-width: none;
+}
+
+#expression {
+    font-family: "Cursive", Times, serif;
+    font-size: 241%;
+    text-align: center;
+    padding-top: 6%;
+    font-style: italic;
+}
+
+.carousel-container {
+    display: inline-block;
+    text-align: center; /* margin: 0 11% 0 10%; */
+    width: 620px;
+    height: 377px;
+}
+
+.stores-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: sp;
+}
+
+.store-details {
+    display: flex;
+    justify-content: space-around;
+}
+
+#map {
+    display: flex;
+    justify-content: center;
+}
+
+#login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#form-login {
+    padding-left: 33%;
+}
+
+.contact-details {
+    margin-top: 3%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.materials-details {
+    display: inline-block;
+    text-align: right;
+    width: 27%;
+    margin-left: 35%;
+}
+
+.multiple {
+    min-height: 170px;
 }

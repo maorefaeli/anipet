@@ -11,29 +11,52 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>@ViewBag.Title - anipet</title>
+    <title>@ViewBag.Title - Anipet</title>
 
-   
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700,800" rel="stylesheet">
-    <link rel="icon" href="~/Content/Images/favicon.jpg">
+    <link rel="icon" href="~/Content/Images/anipetFavicon.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="~/Scripts/jquery-1.10.2.js"></script>
 </head>
 <body>
 
     <header class="navbar flex-column flex-md-row" style="height: 10px;">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">anipet</a>
+            <a class="navbar-brand" href="/">Anipet</a>
+        </div>
+
+        <div class="row">
+
+
+            <div id="temperatureDiv" class="col-lg-6 text-center">
+                <!--<hr />-->
+                <h4>
+                    Weather in Rishon Lezion
+                </h4>
+                <!--<hr />-->
+                <p style="color:white">Achieving the weather, just a second.</p>
+            </div>
+
+            <script src="~/Scripts/jquery-3.4.1.js"></script>
+            <script src="~/Scripts/getWeather.js"></script>
+
         </div>
 
     </header>
 
-  
+    <div class="brand d-flex justify-content-end" style="padding-top:0;">
+        <img src="~/Content/Images/imageedit_1_5651215422.png" class="logo" alt="">
+    </div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation" id="MainNav">
@@ -45,9 +68,7 @@
                     </li>
                     @if (activeUser != null)
                     {
-                        <li class="nav-item li-2 px-lg-4">
-                            @Html.ActionLink("Products", "Index", "Product")
-                        </li>
+                        
                     }
                     @if (activeUser != null && activeUser.IsAdmin)
                     {
@@ -58,7 +79,7 @@
                     @if (activeUser != null && activeUser.IsAdmin)
                     {
                         <li class="nav-item li-2 px-lg-4">
-                            @Html.ActionLink("FoodSources", "Index", "FoodSources", new { area = "" }, new { @class = "nav-link" })
+                            @Html.ActionLink("Materials", "Index", "Materials", new { area = "" }, new { @class = "nav-link" })
                         </li>
                     }
                     @if (activeUser != null && activeUser.IsAdmin)
@@ -92,7 +113,7 @@
 
         <footer>
             <div class="col-lg-12">
-                <p>@DateTime.Now.Year - anipet</p>
+                <p>@DateTime.Now.Year - Anipet</p>
             </div>
         </footer>
     </div>
