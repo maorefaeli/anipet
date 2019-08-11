@@ -292,7 +292,8 @@ footer p {
     background-color: #e7e7e7;
 }
 
-.reviews-section {
+/* Task 18.3 */
+.tips-section {
     -webkit-column-count: 3;
     -moz-column-count: 3;
     column-count: 3;

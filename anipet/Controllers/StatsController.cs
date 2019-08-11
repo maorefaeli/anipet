@@ -15,7 +15,7 @@ namespace anipet.Controllers
         [ChildActionOnly]
         public PartialViewResult GetStats()
         {
-            var ProductByFoodSource = db.Products.GroupBy(r => r.FoodSource).Select(g => new { foodSource = ((FoodSource)g.Key).Name, count = g.Count() }).ToList();
+            var ProductByFoodSource = db.Products.GroupBy(r => r.FoodSource).Select(g => new { foodSource = (g.Key).Name, count = g.Count() }).ToList();
             var ProductByFoodSourceJSON = JsonConvert.SerializeObject(ProductByFoodSource);
             ViewBag.ProductByFoodSource = ProductByFoodSourceJSON;
 

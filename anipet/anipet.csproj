@@ -205,9 +205,6 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Images\Anipet-background.jpg" />
-    <Content Include="Content\Images\anipetFavicon.jpg" />
-    <Content Include="Content\Images\AnipetLogo.png" />
     <Content Include="Content\Images\cool-dog.png" />
     <Content Include="Content\Images\cold-dog.png" />
     <Content Include="Content\Images\dog-sweating.png" />
@@ -215,7 +212,7 @@
     <Content Include="Content\Images\food-2.jpg" />
     <Content Include="Content\Images\food-3.jpg" />
     <Content Include="Content\Images\Food.jpg" />
-    <Content Include="Content\Images\imageedit_1_5651215422.png" />
+    <Content Include="Content\Images\anipet-logo.png" />
     <Content Include="Content\Images\paws.jpg" />
     <Content Include="Content\Videos\dog_runs_into_the_water_in_slowmotion.mp4" />
     <Content Include="favicon.ico" />

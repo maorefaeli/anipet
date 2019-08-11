@@ -2,16 +2,20 @@
     ViewBag.Title = "Suggestion";
 }
 
-<br /><br />
-
-<script>var canvasObject = document.getElementById('canvas');
-    var canvasContext = canvasObject.getContext('2d');
-    var imageObject = new Image();
-
-    imageObject.src = '../../Content/Images/food-3.jpg';
-
-    imageObject.onload = function () {
-        canvasContext.drawImage(imageObject, 0, 0);
-    };</script>
+<canvas id="suggestion-canvas" class="img-responsive img-border" style="border-radius: 100px"></canvas>
 <hr class="visible-xs">
 <p><a href="/Products/Details/@ViewBag.Suggestion.Id">@ViewBag.Suggestion.Name</a></p>
+
+<script>
+    $(document).ready(function () {
+        var canvasObject = document.getElementById('suggestion-canvas');
+        var canvasContext = canvasObject.getContext('2d');
+        var imageObject = new Image();
+
+        imageObject.src = '../../Content/Images/food-3.jpg';
+
+        imageObject.onload = function () {
+            canvasContext.drawImage(imageObject, 0, 0);
+        };
+    });
+</script>
