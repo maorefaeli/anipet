@@ -117,34 +117,34 @@
                     </a>
                     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
                     <script type="text/javascript">
-                            $(function () {
-                                $("#@Html.DisplayFor(modelItem => item.Id)").click(function () {
-                                    $.ajax({
-                                        type: "POST",
-                                        url: "/Products/ChangeFavorite",
-                                        data: '{id: @Html.DisplayFor(modelItem => item.Id) }',
-                                        contentType: "application/json; charset=utf-8",
-                                        dataType: "json",
-                                        success: function (response) {
-                                            if (response.PrevFavorite == "#@Html.DisplayFor(modelItem => item.Id)") {
-                                                $("#@Html.DisplayFor(modelItem => item.Id)").find("i").css('color', 'cornflowerblue');
-                                            } else {
-                                                $("#@Html.DisplayFor(modelItem => item.Id)").find("i").css('color', 'gold');
-                                            }
-                                            if (response.PrevFavorite != "#-1") {
-                                                $(response.PrevFavorite).find("i").css('color', 'cornflowerblue');
-                                            }
-                                        },
-                                        failure: function (response) {
-                                            alert('Oops, something went wrong');
-                                        },
-                                        error: function (response) {
-                                            alert('Oops, something went wrong');
+                        $(function () {
+                            $("#@Html.DisplayFor(modelItem => item.Id)").click(function () {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/Products/ChangeFavorite",
+                                    data: '{id: @Html.DisplayFor(modelItem => item.Id) }',
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    success: function (response) {
+                                        if (response.PrevFavorite == "#@Html.DisplayFor(modelItem => item.Id)") {
+                                            $("#@Html.DisplayFor(modelItem => item.Id)").find("i").css('color', 'cornflowerblue');
+                                        } else {
+                                            $("#@Html.DisplayFor(modelItem => item.Id)").find("i").css('color', 'gold');
                                         }
-                                    });
-                                    return false;
+                                        if (response.PrevFavorite != "#-1") {
+                                            $(response.PrevFavorite).find("i").css('color', 'cornflowerblue');
+                                        }
+                                    },
+                                    failure: function (response) {
+                                        alert('Oops, something went wrong');
+                                    },
+                                    error: function (response) {
+                                        alert('Oops, something went wrong');
+                                    }
                                 });
+                                return false;
                             });
+                        });
                     </script>
                 </td>
                 <td>
