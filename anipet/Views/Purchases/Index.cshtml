@@ -7,19 +7,21 @@
 
 @Html.Partial("Navbar", "Purchases")
 
-<div class="box purchases-container">
+<div class="box purchases-container" >
     <hr>
-    <div class="row">
-        <h class="intro-text text-center col-md-2 col-md-offset-5">
+    <div class="row d-flex justify-content-center">
+        <h class="intro-text text-center col-md-2 col-md-offset-5" style="text-align:center;">
             <strong>Purchases List</strong>
         </h>
-        @if (currentUser != null && currentUser.IsAdmin)
-        {
-            <aside class="text-right col-md-2 col-md-offset-2">
-                <i class="fa fa-home"></i>
-                @Html.ActionLink("Create New", "Create")
-            </aside>
-        }
+    </div>
+    <div style="text-align:left;>
+            @if (currentUser != null && currentUser.IsAdmin)
+            {
+                <aside class="text-right col-md-2 col-md-offset-2">
+                    <i class="fa fa-home"></i>
+                    @Html.ActionLink("Create New", "Create")
+                </aside>
+            }
     </div>
     <table class="table" style="margin-left: 140px; width: 90%;">
         <tr>
