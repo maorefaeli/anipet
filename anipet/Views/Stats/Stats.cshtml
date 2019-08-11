@@ -146,10 +146,10 @@
     }
 
 
-    var ProductByFoodSourceJSON = JSON.parse('@Html.Raw(ViewBag.ProductByFoodSource)');
-    drawBar(ProductByFoodSourceJSON);
+    var productByFoodSourceJSON = JSON.parse('@Html.Raw(ViewBag.ProductByFoodSource)');
+    drawBar(productByFoodSourceJSON);
 
-    var ProductByStoreJSON = JSON.parse('@Html.Raw(ViewBag.ProductByStore)');
-    drawPie(ProductByStoreJSON);
+    var productByStoreJSON = JSON.parse('@Html.Raw(ViewBag.ProductByStore)');
+    drawPie(productByStoreJSON);
 </script>
 

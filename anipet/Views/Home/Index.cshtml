@@ -1,4 +1,5 @@
-﻿@{
+﻿@model anipet.Controllers.HomeController.HomeIndexViewModel
+@{
     ViewBag.Title = "Home";
     anipet.Models.User activeUser = ((anipet.Models.User)Session["User"]);
 }
@@ -46,15 +47,15 @@
         <div class="box">
             @if (activeUser != null)
             {
-            <div class="col-lg-12 text-center">
-                <hr>
-                <h2 class="intro-text text-center">
-                    You Might
-                    <strong>Like</strong>
-                </h2>
-                <hr>
-                @Html.Action("GetSuggestion", "Suggestion", new { userName = activeUser.Username })
-            </div>
+                <div class="col-lg-12 text-center">
+                    <hr>
+                    <h2 class="intro-text text-center">
+                        You Might
+                        <strong>Like</strong>
+                    </h2>
+                    <hr>
+                    @Html.Action("GetSuggestion", "Suggestion", new { userName = activeUser.Username })
+                </div>
             }
         </div>
     </div>
@@ -91,31 +92,52 @@
             <div class="col-lg-12 text-center">
                 <hr>
                 <h2 class="intro-text text-center">
-                    Company
-                    <strong>Statistics</strong>
+                    <strong>People</strong>
+                    who like this product, will defeintely enjoy these
+                    <strong>food sources</strong>
                 </h2>
                 <hr>
-                <hr class="visible-xs">
-                <p>@Html.Action("GetStats", "Stats")</p>
-
+                @foreach (var item in Model.UsersAndFood)
+                {
+                    <div style="display: inline-block">
+                        <div class="col">
+                            @item.UserName
+                        </div>
+                        <div class="col">
+                            @item.FoodSourceName
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="box">
+                <div class="col-lg-12 text-center">
+                    <hr>
+                    <h2 class="intro-text text-center">
+                        Company
+                        <strong>Statistics</strong>
+                    </h2>
+                    <hr class="visible-xs">
+                    <p>@Html.Action("GetStats", "Stats")</p>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="box">
+                <div class="col-lg-12 text-center">
+                    <hr>
+                    <h2 class="intro-text text-center">
+                        Smooth Tweets
+                        <strong>about #Pets</strong>
+                    </h2>
+                    <hr>
+                    <a href="https://twitter.com/intent/tweet?screen_name=Anipet" class="twitter-mention-button" data-show-count="false">Tweet to Anipet</a>
+                    <br />
+                    <a class="twitter-timeline" data-width="400" data-height="500" href="https://twitter.com/Pets?ref_src=twsrc%5Etfw">Tweets by Anipet</a>
+                    <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+                    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row d-flex justify-content-center">
-        <div class="box">
-            <div class="col-lg-12 text-center">
-                <hr>
-                <h2 class="intro-text text-center">
-                    Smooth Tweets
-                    <strong>about #Pets</strong>
-                </h2>
-                <hr>
-                <a href="https://twitter.com/intent/tweet?screen_name=Anipet" class="twitter-mention-button" data-show-count="false">Tweet to Anipet</a>
-                <br />
-                <a class="twitter-timeline" data-width="400" data-height="500" href="https://twitter.com/Pets?ref_src=twsrc%5Etfw">Tweets by Anipet</a>
-                <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
-                <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
-        </div>
-    </div>
-</div>

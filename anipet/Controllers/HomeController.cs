@@ -10,10 +10,53 @@ namespace anipet.Controllers
     public class HomeController : Controller
     {
         private DBContext db = new DBContext();
+
+        public class UserAndFood
+        {
+            public string UserName;
+            public string FoodSourceName;
+        }
+
+        public class HomeIndexViewModel
+        {
+            public List<UserAndFood> UsersAndFood;
+        }
+
         public ActionResult Index()
         {
-            ViewBag.MostPopularProduct = db.Users.GroupBy(r => r.FavoriteProduct).Select(g => new { Product = g.Key, count = g.Count() }).OrderByDescending(r => r.count).First().Product;
-            return View();
+            var popular = db.Users.GroupBy(r => r.FavoriteProduct)
+                                  .Select(g => new { Product = g.Key, count = g.Count() })
+                                  .OrderByDescending(r => r.count)
+                                  .First().Product;
+            ViewBag.MostPopularProduct = popular;
+
+            var favoriteFood = db.Products
+                .Join(db.Users,
+                      product => product,
+                      user => user.FavoriteProduct,
+                      (product, user) => new {product, user})
+                .Where(product => product.product.Id == popular.Id)
+                .Select(z => new
+                {
+                    Name = z.user.Username,
+                    FoodSource = z.product.FoodSource
+                }).ToList();
+
+            var vm = new HomeIndexViewModel
+            {
+                UsersAndFood = new List<UserAndFood>()
+            };
+            foreach (var item in favoriteFood)
+            {
+                var newItem = new UserAndFood
+                {
+                    UserName = item.Name,
+                    FoodSourceName = item.FoodSource.Name
+                };
+                vm.UsersAndFood.Add(newItem);
+            }
+
+            return View(vm);
         }
 
         public ActionResult About()
