@@ -39,7 +39,7 @@ namespace anipet.DAL
                 new User{Id=1,IsAdmin=true,Password="123",Username="Shai",FavoriteProduct=context.Products.Find(3),Stores=new List<Store>{context.Stores.Find(1)} },
                 new User{Id=2,IsAdmin=true,Password="HelloWorld1!",Username="Guy",FavoriteProduct=context.Products.Find(1), Stores=new List<Store>{context.Stores.Find(1)}},
                 new User{Id=3,IsAdmin=true,Password="Ashkenazi",Username="Alon",FavoriteProduct=context.Products.Find(4), Stores=new List<Store>{context.Stores.Find(1)}},
-                new User{Id=4,IsAdmin=true,Password="BarRefaeli",Username="Maor",FavoriteProduct=context.Products.Find(5), Stores=new List<Store>{context.Stores.Find(1)}},
+                new User{Id=4,IsAdmin=true,Password="1234",Username="Maor",FavoriteProduct=context.Products.Find(5), Stores=new List<Store>{context.Stores.Find(1)}},
                 new User{Id=5,IsAdmin=false,Password="Losers",Username="Hapoel",FavoriteProduct=context.Products.Find(5), Stores=new List<Store>{context.Stores.Find(1)}},
             };
             users.ForEach(s => context.Users.Add(s));
