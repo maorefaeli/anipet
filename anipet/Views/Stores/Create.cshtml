@@ -23,22 +23,22 @@
 
             <div class="form-group">
                 <div>
-                    @Html.EditorFor(model => model.Store.City, new { htmlAttributes = new { @placeholder = "City", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Store.City, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @placeholder = "City", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
                 <div>
-                    @Html.EditorFor(model => model.Store.StreetAddress, new { htmlAttributes = new { @placeholder = "StreetAddress", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Store.StreetAddress, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.StreetAddress, new { htmlAttributes = new { @placeholder = "StreetAddress", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.StreetAddress, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <label>Products that this store has (can be none or multiple):</label>
             <div class="form-group">
                 <div>
-                    @Html.ListBoxFor(model => model.ProductIds, ViewBag.ProductList as MultiSelectList, new { @class = "form-control multiple", multiple = "multiple" })
+                    @Html.ListBoxFor(model => model.Products, ViewBag.ProductList as MultiSelectList, new { @class = "form-control multiple", multiple = "multiple" })
                 </div>
             </div>
 

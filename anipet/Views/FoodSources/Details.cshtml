@@ -4,14 +4,14 @@
     ViewBag.Title = "Food Source Details";
 }
 
-<div class="box">
+<div class="box" style="flex-direction: column"; align-items: center;>
     <hr>
     <h2 class="intro-text text-center">
         <strong>Food Source</strong>
         <small>details</small>
     </h2>
     <hr>
-    <div class="food-sources-details">
+    <div>
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.Name)

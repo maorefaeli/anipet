@@ -29,7 +29,7 @@ p {
     display: flex;
     font-size: 1.25em;
     line-height: 1.6;
-    color: black;
+    color: white;
     justify-content: center;
 }
 
@@ -45,7 +45,7 @@ hr {
 
 .body-content {
     color: #ffffff;
-    background: #2b363e;
+    background: #2b363ec7;
     padding-right: 0 !important;
     padding-left: 0 !important;
 }

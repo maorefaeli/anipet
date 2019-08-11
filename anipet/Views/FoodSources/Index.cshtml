@@ -10,7 +10,7 @@
 
 <div class="box" style="flex-direction: column">
     <hr>
-    <div class="row">
+    <div style="display:inline;">
         <h class="intro-text text-center col-md-2 col-md-offset-5">
             <strong>Food Sources</strong>
             <h>List</h>
@@ -33,17 +33,17 @@
         @using (Html.BeginForm("Search", "FoodSources", FormMethod.Get))
         {
             <form class="form-inline">
-                <div class="form-group col-md-2 col-md-offset-2">
+                <div class="form-group col-md-2 col-md-offset-2" style="left:43%;">
                     <div>
                         <input class="form-control" type="text" name="foodSource" placeholder="Food Source" />
                     </div>
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-2"  style="left:43%;">
                     <div>
                         <input class="form-control" type="number" name="price" min="0" placeholder="price" />
                     </div>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-3"  style="left:43%;">
                     <button type="submit" class="btn btn-info">
                         <span class="glyphicon glyphicon-search">
                             Search
