@@ -78,7 +78,7 @@ namespace anipet.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Store, ProductIds")] CreateStoreViewModel viewModel)
         {
-            var currentUser = ((User)HttpContext.Session["user"]);
+            var currentUser = (User)HttpContext.Session["user"];
             if (currentUser != null)
             {
                 // Set the current user as the owner of the Store
